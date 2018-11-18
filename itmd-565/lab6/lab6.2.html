@@ -18,15 +18,29 @@
     const prod_name = 'Bath and Body Products';
     const prod_description = 'From shower gel and bar soap to moisturizing lotions and creams, the bath and body category includes all the items you need to take care of your skin and external body surfaces.';
 
-    const ProductImage = (props) => {};
+    const ProductImage = (props) => {
+        return <img src = {props.imgSrc} />;
+    }; //End of ProductImage fn comp
 
-    const ProductName = (props) => {};
+    const ProductName = (props) => {
+        return <h2>{props.prodName}</h2>;
+    }; //End of ProductName fn comp
 
-    const ProductDesc = (props) => {};
+    const ProductDesc = (props) => {
+        return <p>{props.prodDesc}</p>;
+    }; //End of ProductDesc fn comp
 
-    const Product = (props) => {};
+    const Product = (props) => {
+        return(
+            <div>
+                <ProductImage imgSrc={prod_img} />
+                <ProductName prodName={prod_name} />
+                <ProductDesc prodDesc={prod_description} />
+            </div>
+        );
+    }; //End of Product wrapper comp
 
-    ReactDOM.render();
+    ReactDOM.render( <Product />, document.getElementById('app'));
 
     // All your code should be between these two comments
     </script>
