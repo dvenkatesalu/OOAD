@@ -14,8 +14,16 @@
 
     <script type="text/babel">
     // All your code should be between these two comments
+    function Headline(props)
+    {
+        return React.createElement(
+            'h1', 
+            null, 
+            "ITMD-565 Lab 6 Part 1 - " + props.name
+        );
+    }//End of Headline function
 
-
+    ReactDOM.render(< Headline name="Dharanip Priya Venkatesalu" />, document.getElementById('app'));
 
     // All your code should be between these two comments
     </script>
