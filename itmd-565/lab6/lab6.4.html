@@ -20,10 +20,66 @@
         prod_description: 'From shower gel and bar soap to moisturizing lotions and creams, the bath and body category includes all the items you need to take care of your skin and external body surfaces.'
     };
 
-    // Put class based Product component here
-    
+    class ProductImage extends React.Component
+    {
+        render()
+        {
+            return (
+                 React.createElement(
+                    'img',
+                    { src : this.props.prod.prod_img }
+                )
+            );
+        }
+    }
 
-    ReactDOM.render();
+    class ProductDesc extends React.Component
+    {
+        render()
+        {
+            return (
+                React.createElement(
+                    'p',
+                    null,
+                    this.props.prod.prod_description
+                )
+            );
+        }
+    }
+
+    class ProductName extends React.Component
+    {
+        render()
+        {
+            return (
+                React.createElement(
+                    'h2',
+                    null,
+                    this.props.prod.prod_name
+                )
+            );
+        }
+    }
+    // Put class based Product component here
+    class Product extends React.Component
+    {
+        render()
+        {
+            return(
+                React.createElement(
+                    'div',
+                    null,
+                    React.createElement(ProductImage, { prod: this.props.product}),
+                    React.createElement(ProductName, { prod: this.props.product}),
+                    React.createElement(ProductDesc, { prod: this.props.product})
+                )
+            ); //end of return
+        } //End of render Function
+    } //End of Product class component
+
+
+    ReactDOM.render(React.createElement(Product, { product: product }), 
+                        document.getElementById('app'));
 
     // All your code should be between these two comments
     </script>
