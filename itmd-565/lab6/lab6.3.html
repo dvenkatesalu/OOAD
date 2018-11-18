@@ -20,6 +20,35 @@
         prod_description: 'From shower gel and bar soap to moisturizing lotions and creams, the bath and body category includes all the items you need to take care of your skin and external body surfaces.'
     };
 
+    class ProductImage extends React.Component
+    {
+        render()
+        {
+            return (
+                <img src = {this.props.prod.prod_img} />
+            );
+        }
+    }
+
+    class ProductDesc extends React.Component
+    {
+        render()
+        {
+            return (
+                <p> {this.props.prod.prod_description} </p>
+            );
+        }
+    }
+
+    class ProductName extends React.Component
+    {
+        render()
+        {
+            return (
+                <h2> {this.props.prod.prod_name} </h2>
+            );
+        }
+    }
     // Put class based Product component here
     class Product extends React.Component
     {
@@ -27,9 +56,9 @@
         {
             return(
                 <div>
-                    <img src = {this.props.product.prod_img} />
-                    <h2> {this.props.product.prod_name} </h2>
-                    <p> {this.props.product.prod_description} </p>
+                    <ProductImage prod={this.props.product} />
+                    <ProductName prod={this.props.product} />
+                    <ProductDesc prod={this.props.product} />
                 </div>
             ); //end of return
         } //End of render Function
