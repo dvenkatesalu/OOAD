@@ -1,7 +1,7 @@
 /**
  * 
  */
-package records;
+package models;
 
 import java.util.HashMap;
 import java.util.List;

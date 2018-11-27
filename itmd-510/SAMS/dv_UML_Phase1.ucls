@@ -10,7 +10,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="records.Admin" project="SAMS" file="/SAMS/src/records/Admin.java" binary="false" 
+  <class id="2" language="java" name="models.Admin" project="SAMS" file="/SAMS/src/models/Admin.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="153" width="191" x="170" y="350"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -19,7 +19,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="3" language="java" name="records.Details" project="SAMS" file="/SAMS/src/records/Details.java" 
+  <interface id="3" language="java" name="models.Details" project="SAMS" file="/SAMS/src/models/Details.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="315" width="302" x="572" y="831"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -28,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="4" language="java" name="records.Student" project="SAMS" file="/SAMS/src/records/Student.java" 
-    binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="models.Student" project="SAMS" file="/SAMS/src/models/Student.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
     <position height="441" width="302" x="401" y="350"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -37,7 +37,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="records.Instructor" project="SAMS" file="/SAMS/src/records/Instructor.java" 
+  <class id="5" language="java" name="models.Instructor" project="SAMS" file="/SAMS/src/models/Instructor.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="423" width="302" x="743" y="350"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -46,7 +46,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="records.Person" project="SAMS" file="/SAMS/src/records/Person.java" binary="false" 
+  <class id="6" language="java" name="models.Person" project="SAMS" file="/SAMS/src/models/Person.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="171" width="95" x="401" y="139"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -55,26 +55,26 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <realization id="7">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="3"/>  
-  </realization>  
-  <generalization id="8">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="6"/>  
-  </generalization>  
-  <generalization id="9">    
+  <generalization id="7">    
     <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <generalization id="10">    
+  <generalization id="8">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="6"/>  
   </generalization>  
-  <realization id="11">    
+  <realization id="9">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="3"/>  
+  </realization>  
+  <realization id="10">    
     <end type="SOURCE" refId="5"/>    
     <end type="TARGET" refId="3"/>  
   </realization>  
+  <generalization id="11">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

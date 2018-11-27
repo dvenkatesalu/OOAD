@@ -3,7 +3,7 @@
  *
  */
 
-package records;
+package models;
 
 
 class Person 

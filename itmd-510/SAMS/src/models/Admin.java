@@ -1,7 +1,7 @@
 /**
  * 
  */
-package records;
+package models;
 
 /**
  * @author Dharanip Priya
