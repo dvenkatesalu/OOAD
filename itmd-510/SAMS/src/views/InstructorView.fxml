@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ChoiceBox fx:id="Studentlist" layoutX="277.0" layoutY="88.0" prefWidth="150.0" />
+      <ChoiceBox fx:id="Attreport" layoutX="277.0" layoutY="131.0" prefWidth="150.0" />
+      <Label layoutX="231.0" layoutY="28.0" text="Student Details">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="119.0" layoutY="90.0" text="Student List">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="119.0" layoutY="134.0" text="Attendance Report">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="119.0" layoutY="180.0" text="Generate Passcode">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="119.0" layoutY="221.0" text="Attendance Entry">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="119.0" layoutY="265.0" text="Enter Grades">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="passcode" layoutX="278.0" layoutY="178.0" onAction="#generate" />
+      <TextField fx:id="Attentry" layoutX="278.0" layoutY="219.0" onAction="#entry" />
+      <TextField fx:id="entergrades" layoutX="278.0" layoutY="262.0" onAction="#grades" />
+      <Button fx:id="submit" layoutX="482.0" layoutY="263.0" mnemonicParsing="false" onAction="#submit" text="Go" />
+   </children>
+</AnchorPane>

@@ -6,11 +6,30 @@
 package models;
 
 
-class Person 
+public class Person 
 {
-	protected String fName,mName,lName;
-	protected String cwid;
-	protected String emailid;
+	public String fName,mName,lName;
+	public String cwid;
+	public String emailid;
+	public String dept;
+	public Boolean isStudent;
+	public Boolean isAdmin;
+	public Boolean isInstructor;
+	public String email;
+	public String password;
 	
-	//Generate getters and setters after submission
+	public Person()
+	{
+		fName = "";
+		mName = "";
+		lName = "";
+		cwid = "";
+		emailid = "";
+		dept = "";
+		isStudent = false;
+		isAdmin = false;
+		isInstructor = false;
+		password = "";
+		email = "";
+	}
 }
