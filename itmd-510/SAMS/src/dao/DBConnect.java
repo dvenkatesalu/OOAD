@@ -38,6 +38,20 @@ public class DBConnect
 			System.exit(-1);
 		}
 	}
+	
+	public void finalize()
+	{
+		try 
+		{
+			if( !connection.isClosed() )
+				connection.close();
+		} 
+		
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+	}
 
 	
 }
