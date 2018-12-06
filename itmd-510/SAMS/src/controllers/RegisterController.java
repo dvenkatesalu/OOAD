@@ -20,7 +20,7 @@ import models.RegisterModel;
 public class RegisterController 
 {
 
-	private ObservableList<String> deptList = FXCollections.observableArrayList("ITM", "MMAE", "ECE", "CSE");;
+	private ObservableList<String> deptList = FXCollections.observableArrayList("ITM", "MMAE", "ECE", "CSE");
 	@FXML
 	private TextField fName;
 	@FXML
@@ -135,10 +135,17 @@ public class RegisterController
 			return;
 		}
 		
-		r.enterDetails(p);
-		System.out.println("Details entered successfully!");
-		new Main().updateScene(Main.LOGINVIEW);
+		if( r.enterDetails(p) )
+		{
+			System.out.println("Details entered successfully!");
+			prevLoginScreen();
+		}
 		
+		else
+		{
+			System.out.println("Problem with registration!");
+			this.errorLbl.setText("There was an issue with registration. Please try again.");
+		}
 	}
 
 	public void prevLoginScreen()

@@ -23,14 +23,12 @@ public class RegisterModel extends DBConnect
 		// TODO Auto-generated constructor stub
 	}
 
-	public void enterDetails(Person P)
+	public boolean enterDetails(Person P)
 	{
 		try
         {
 			DBConnect conn = new DBConnect();
-			Statement stmt = null;
 			
-			stmt = conn.getConnection().createStatement();
 			PreparedStatement insertRecords = null;
 			
 			//CHANGE TABLE NAME
@@ -51,7 +49,7 @@ public class RegisterModel extends DBConnect
 	    	// TODO : hash password before saving
 	    	insertRecords.setString(10, P.password); 
 	    	
-	        insertRecords.executeUpdate();
+	        int count = insertRecords.executeUpdate();
 			
 			/*String sql = "INSERT INTO dp_personaldetails(cwid, fname, mname, lname, dept, student, "
 					+ "instructor, admin, email, password) VALUES ( '" + P.cwid + "','" + P.fName 
@@ -65,7 +63,17 @@ public class RegisterModel extends DBConnect
 	
 			 conn.getConnection().close();
 	       
-	        System.out.println("Record Inserted successfully!");
+			 if( count == 1 )
+			 {
+				 System.out.println("Record Inserted successfully!");
+				 return true;
+			 }
+			 
+			 else
+			 {
+				 System.out.println("Problem with Record Insertion!");
+				 return false;
+			 }
         }
         
         catch (SQLException e) 
