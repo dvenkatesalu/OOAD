@@ -7,12 +7,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="282.0" prefWidth="539.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="282.0" prefWidth="539.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminController">
    <children>
-      <ComboBox fx:id="Actionid" layoutX="45.0" layoutY="116.0" prefHeight="16.0" prefWidth="97.0" />
-      <ComboBox fx:id="targetid" layoutX="174.0" layoutY="116.0" prefHeight="12.0" prefWidth="97.0" />
-      <ComboBox fx:id="functionid" layoutX="294.0" layoutY="116.0" prefHeight="12.0" prefWidth="97.0" />
-      <Button fx:id="ftchDtls" layoutX="452.0" layoutY="116.0" mnemonicParsing="false" text="Go" />
+      <ComboBox fx:id="actionDrpDwn" layoutX="45.0" layoutY="116.0" prefHeight="16.0" prefWidth="97.0" />
+      <ComboBox fx:id="targetDrpDwn" layoutX="174.0" layoutY="116.0" prefHeight="12.0" prefWidth="97.0" />
+      <ComboBox fx:id="functionDrpDwn" layoutX="294.0" layoutY="116.0" prefHeight="12.0" prefWidth="97.0" />
+      <Button fx:id="ftchDtls" layoutX="452.0" layoutY="116.0" mnemonicParsing="false" onAction="#fetchDetails" text="Go" />
       <Label layoutX="151.0" layoutY="33.0" text="Student &amp; Staff Details">
          <font>
             <Font size="18.0" />
