@@ -9,7 +9,6 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
-import models.Person;
 import models.RegisterModel;
 
 /**
@@ -44,14 +43,12 @@ public class RegisterController
 	@FXML
 	private PasswordField pwdReEnterFld;
 	
-	private Person p;
 	private RegisterModel r;
 	/**
 	 * Constructor to initialize default values
 	 */
 	public RegisterController() 
 	{
-		p = new Person();
 		r = new RegisterModel();
 	}
 	
@@ -63,72 +60,72 @@ public class RegisterController
 	public void updateDetails()
 	{
 		this.errorLbl.setText("");
-		p.fName = fName.getText();
-		p.mName = this.mName.getText();
-		p.lName = this.lName.getText();
-		p.emailid = this.emailId.getText();
-		p.cwid = this.cwid.getText();
-		p.dept = this.deptChoice.getValue();
-		p.password = this.pwdFld.getText();
+		Main.personObject.fName = fName.getText();
+		Main.personObject.mName = this.mName.getText();
+		Main.personObject.lName = this.lName.getText();
+		Main.personObject.emailid = this.emailId.getText();
+		Main.personObject.cwid = this.cwid.getText();
+		Main.personObject.dept = this.deptChoice.getValue();
+		Main.personObject.password = this.pwdFld.getText();
 		String pwd2 = this.pwdReEnterFld.getText();
 		
-		if( p.fName == null || p.fName.trim().equals("") )
+		if( Main.personObject.fName == null || Main.personObject.fName.trim().equals("") )
 		{
 			this.errorLbl.setText("*First Name should not be empty");
 			return;
 		}
 		
-		if( p.lName == null || p.lName.trim().equals("") )
+		if( Main.personObject.lName == null || Main.personObject.lName.trim().equals("") )
 		{
 			this.errorLbl.setText("*Last Name should not be empty");
 			return;
 		}
 		
-		if( p.emailid == null || p.emailid.trim().equals("") )
+		if( Main.personObject.emailid == null || Main.personObject.emailid.trim().equals("") )
 		{
 			this.errorLbl.setText("*Email should not be empty");
 			return;
 		}
 		
-		if( p.cwid == null || p.cwid.trim().equals("") )
+		if( Main.personObject.cwid == null || Main.personObject.cwid.trim().equals("") )
 		{
 			this.errorLbl.setText("*cwid should not be empty");
 			return;
 		}
 		
-		if( p.dept == null || p.dept.trim().equals("") )
+		if( Main.personObject.dept == null || Main.personObject.dept.trim().equals("") )
 		{
 			this.errorLbl.setText("*Please choose a department");
 			return;
 		}
 		
-		if( p.password == null || p.password.trim().equals(""))
+		if( Main.personObject.password == null || Main.personObject.password.trim().equals(""))
 		{
 			this.errorLbl.setText("*Password cannot be empty");
 			return;
 		}
 		
-		if( pwd2== null || pwd2.trim().equals("") || !(pwd2.equals(p.password)))
+		if( pwd2== null || pwd2.trim().equals("") || !(pwd2.equals(Main.personObject.password)))
 		{
 			this.errorLbl.setText("*Passwords dont match");
 			return;
 		}
 		
 		
-		int idx = p.emailid.indexOf("@");
-		String mailDomain = p.emailid.substring(idx+1);
+		int idx = Main.personObject.emailid.indexOf("@");
+		String mailDomain = Main.personObject.emailid.substring(idx+1);
 		
 		if( mailDomain.equals("hawk.iit.edu"))
 		{
-			p.isStudent = true;
+			Main.personObject.isStudent = true;
 		}
 		else if(mailDomain.equals("iit.edu"))
 		{
-			p.isInstructor = true;
+			Main.personObject.isInstructor = true;
 		}
 		else if(mailDomain.equals("a.iit.edu"))
 		{
-			p.isAdmin = true;
+			Main.personObject.isAdmin = true;
 		}
 		else
 		{
@@ -136,7 +133,7 @@ public class RegisterController
 			return;
 		}
 		
-		if( r.enterDetails(p) )
+		if( r.enterDetails(Main.personObject) )
 		{
 			System.out.println("Details entered successfully!");
 			prevLoginScreen();
@@ -147,6 +144,7 @@ public class RegisterController
 			System.out.println("Problem with registration!");
 			this.errorLbl.setText("There was an issue with registration. Please try again.");
 		}
+		prevLoginScreen();
 	}
 
 	public void prevLoginScreen()

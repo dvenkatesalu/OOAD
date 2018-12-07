@@ -13,7 +13,7 @@ import javafx.fxml.FXML;
  * @author Dharanip Priya
  * @since Nov 29, 2018
  */
-public class LoginController 
+public class LoginController
 {
 	@FXML
 	private TextField unameTxtFld;
@@ -23,8 +23,6 @@ public class LoginController
 	private Label errLbl;
 	
 	private LoginModel login;
-	private Person p;
-	
 
 	/**
 	 * 
@@ -32,7 +30,7 @@ public class LoginController
 	public LoginController() 
 	{
 		login = new LoginModel();
-		p = new Person();
+		Main.personObject = new Person();
 	} //End of constructor
 	
 	public void login()
@@ -67,23 +65,23 @@ public class LoginController
 	}
 	
 	private void checkCredentialsAndChangeView( String email, String pwd )
-	{		if( !( login.chckCredentials( email, pwd, p ) ) )
+	{		if( !( login.chckCredentials( email, pwd, Main.personObject ) ) )
 		{
 			this.errLbl.setText("EMail ID or Password is Incorrect. Please try again."); //Implement 3 tries
 			return;
 		}
 		
-		if( p.isAdmin )
+		if( Main.personObject.isAdmin )
 		{
 			new Main().updateScene(Main.ADMINVIEW);
 		}
 		
-		else if( p.isInstructor )
+		else if( Main.personObject.isInstructor )
 		{
 			new Main().updateScene(Main.INSTRUCTORVIEW);
 		}
 		
-		else if( p.isStudent )
+		else if( Main.personObject.isStudent )
 		{
 			new Main().updateScene(Main.STUDENTVIEW);
 		}
