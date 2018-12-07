@@ -1,5 +1,6 @@
 package application;
 	
+import dao.DBConnect;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -14,9 +15,9 @@ public class Main extends Application
 	private Scene scene;
 	public static String LOGINVIEW = "/views/LoginView.fxml";
 	public static String REGISTERVIEW = "/views/RegisterView.fxml";
-	public static String INSTRUCTORVIEW = "";
-	public static String STUDENTVIEW = "";
-	public static String ADMINVIEW = "";
+	public static String INSTRUCTORVIEW = "/views/InstructorView.fxml";
+	public static String STUDENTVIEW = "/views/StudentView.fxml";
+	public static String ADMINVIEW = "/views/AdminView.fxml";
 	
 	@Override
 	public void start(Stage primaryStage) 
@@ -44,10 +45,17 @@ public class Main extends Application
 		try
 		{
 			String title = "";
+		
 			if( viewName.equals(LOGINVIEW) )
 				title = "Login";
 			else if( viewName.equals(REGISTERVIEW) )
 				title = "Register";
+			else if( viewName.equals(ADMINVIEW))
+				title = "Admin Window";
+			else if( viewName.equals(STUDENTVIEW))
+				title = "Student Window";
+			else if( viewName.equals(INSTRUCTORVIEW))
+				title = "Instructor Window";
 			root = (AnchorPane) FXMLLoader.load(getClass().getResource(viewName));
 			stage.setTitle(title);
 			scene = new Scene(root);
@@ -62,6 +70,8 @@ public class Main extends Application
 	
 	public static void main(String[] args) 
 	{
+		DBConnect db = new DBConnect();
 		launch(args);
+		db.finalize();
 	}
 }
