@@ -62,6 +62,7 @@ public class RegisterController
 	
 	public void updateDetails()
 	{
+		this.errorLbl.setText("");
 		p.fName = fName.getText();
 		p.mName = this.mName.getText();
 		p.lName = this.lName.getText();

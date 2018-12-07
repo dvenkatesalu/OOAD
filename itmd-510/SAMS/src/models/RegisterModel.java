@@ -2,7 +2,6 @@ package models;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import dao.DBConnect;
 
@@ -12,7 +11,7 @@ import dao.DBConnect;
  * @author Harika Kuladevi
  * @since Nov 30, 2018
  */
-public class RegisterModel extends DBConnect
+public class RegisterModel
 {
 
 	/**
@@ -27,15 +26,14 @@ public class RegisterModel extends DBConnect
 	{
 		try
         {
-			DBConnect conn = new DBConnect();
 			
 			PreparedStatement insertRecords = null;
 			
 			//CHANGE TABLE NAME
-			String query = "INSERT INTO dp_personaldetails(cwid, fname, mname, lname, dept, student, "
+			String query = "INSERT INTO personalDetails(cwid, fname, mname, lname, dept, student, "
 					+ "instructor, admin, email, password) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 			
-			insertRecords = conn.getConnection().prepareStatement(query);
+			insertRecords = DBConnect.connection.prepareStatement(query);
 	        
 	    	insertRecords.setString(1, P.cwid);
 	    	insertRecords.setString(2, P.fName);
@@ -49,36 +47,34 @@ public class RegisterModel extends DBConnect
 	    	// TODO : hash password before saving
 	    	insertRecords.setString(10, P.password); 
 	    	
+	    	System.out.println("Insert personDetails query : " + insertRecords.toString());
+	    	
 	        int count = insertRecords.executeUpdate();
-			
-			/*String sql = "INSERT INTO dp_personaldetails(cwid, fname, mname, lname, dept, student, "
-					+ "instructor, admin, email, password) VALUES ( '" + P.cwid + "','" + P.fName 
-					+ "','" + P.mName + "','" + P.lName + "','" + P.dept + "','" + P.isStudent + "','" 
-					+ P.isInstructor + "','" + P.isAdmin + "','" + P.email + "','" + P.password + "');";
-			System.out.println("Query : " + sql );
-			
-			 ResultSet rs = stmt.executeQuery(sql);
-			 
-			 System.out.println("Inseretd records into the database.");*/
-	
-			 conn.getConnection().close();
 	       
 			 if( count == 1 )
 			 {
 				 System.out.println("Record Inserted successfully!");
-				 return true;
+				 String query2 = "INSERT INTO login VALUES (?, ?);";
+				 insertRecords = DBConnect.connection.prepareStatement(query2);
+				 insertRecords.setString(1, P.emailid);
+			     insertRecords.setString(2, P.password);
+			     System.out.println("Insert login query : " + insertRecords.toString());
+			     count = insertRecords.executeUpdate();
+			     if( count == 1 )
+			    	 return true;
 			 }
 			 
-			 else
-			 {
-				 System.out.println("Problem with Record Insertion!");
-				 return false;
-			 }
+			 
+			 System.out.println("Problem with Record Insertion!");
+			 return false;
+			 
         }
         
         catch (SQLException e) 
         {
         	e.printStackTrace();   
         }
+		
+		return false;
 	}
 }
