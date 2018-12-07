@@ -18,9 +18,14 @@ public class DBConnect
 		return connection;
 	}*/
 
+	/*
 	private static String url = "jdbc:mysql://localhost:3306/sams";
 	private static String username = "root";
 	private static String password = "Dipp@1106";
+	*/
+	private static String url = "jdbc:mysql://192.168.1.119:3306/sams";
+	private static String username = "harika";
+	private static String password = "harika123";
 	
 	public static Connection connection;
 	
