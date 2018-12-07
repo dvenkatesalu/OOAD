@@ -37,6 +37,7 @@ public class LoginController
 	
 	public void login()
 	{
+		this.errLbl.setText("");
 		String mailId = this.unameTxtFld.getText();
 		String pwd = this.pwdFld.getText();
 		
