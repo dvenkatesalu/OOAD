@@ -23,7 +23,7 @@ public class AdminController
 	private ObservableList<String> functionList = FXCollections.observableArrayList("Details","Schedule");
 	private ObservableList<String> deptList = FXCollections.observableArrayList("ITM", "MMAE", "ECE", "CSE");
 	private ObservableList<String> emptyList = FXCollections.observableArrayList();
-	private ObservableList<String> cwidList = FXCollections.observableArrayList();
+	private ObservableList<String> idList = FXCollections.observableArrayList();
 	
 	@FXML
 	private ComboBox<String> actionDrpDwn;
@@ -32,21 +32,24 @@ public class AdminController
 	@FXML
 	private ComboBox<String> functionDrpDwn;
 	@FXML
-	private Button ftchDtls;
-	@FXML
 	private Label errLbl;
-	
-	@FXML
-	private AnchorPane adminGoView;
 	@FXML
 	private ComboBox<String> deptDrpDwn;
 	@FXML 
-	private ChoiceBox<String> cwidDrpDwn;
+	private Button fetchidBtn;
+	
+	@FXML
+	private AnchorPane idViewPane;
+	@FXML
+	private Label idLbl;
 	@FXML 
-	private Button enblAction;
+	private ChoiceBox<String> idDrpDwn;
+	@FXML 
+	private Button finalGoBtn;
+	
 	
 	private AdminModel admin;
-	
+	private String target, dept;
 	/**
 	 * 
 	 */
@@ -61,18 +64,21 @@ public class AdminController
 		targetDrpDwn.setItems(targetList);
 		functionDrpDwn.setItems(functionList);
 		deptDrpDwn.setItems(deptList);
-		cwidDrpDwn.setItems(emptyList);
+		idDrpDwn.setItems(emptyList);
 		
-		adminGoView.setVisible(false);
+		idViewPane.setVisible(false);
+		
+		target = "";
+		dept = "";
 	}
 	
-	public void fetchDetails()
+	public void setDeptDrpDwn()
 	{	
 		errLbl.setText("");
 		String action = actionDrpDwn.getValue();
-		String target = targetDrpDwn.getValue();
+		target = targetDrpDwn.getValue();
 		String function = functionDrpDwn.getValue();
-		
+		dept = deptDrpDwn.getValue();
 		
 		if( action == null || action == "" )
 		{
@@ -89,44 +95,44 @@ public class AdminController
 			errLbl.setText("Please choose a function");
 			return;
 		}
-		
-		cwidDrpDwn.setVisible(false);
-		adminGoView.setVisible(true);
-		
-		String dept = deptDrpDwn.getValue();
-		if( dept == null || dept == "" )
+		else if( dept == null || dept == "" )
 		{
 			errLbl.setText("Please choose a dept");
 			return;
 		}
-		
+		System.out.println("In fetch details ");
+		System.out.println(dept + " : " + target );
+		setIdDrpdwnValues();
+	}
+	
+	public void setIdDrpdwnValues()
+	{
+		errLbl.setText("");
+		System.out.println("In drpDwn details ");
+		System.out.println(dept + " : " + target );
+		idViewPane.setVisible(true);
+				
 		if( target.equals("Course"))
 		{
-			//get course ids from the course table
+			idLbl.setText("Course ID");
+			idList = FXCollections.observableArrayList(admin.getCourseIDs(dept));
 		}
 		
 		else
 		{
-			//if( target.equals(arg0))
-			cwidList = FXCollections.observableArrayList(admin.getCWIDs(dept, target));
-			cwidDrpDwn.setItems(cwidList);;
-			cwidDrpDwn.setVisible(true);
+			idLbl.setText("CWID");
+			idList = FXCollections.observableArrayList(admin.getCWIDs(dept, target));
 		}
-	}
-	
-	public void setDeptDrpDwn()
-	{
 		
-	}
-	
-	public void setCwidDrpdwnValues()
-	{
-		cwidDrpDwn.setItems(cwidList);
+		if( idList.size() > 0 )
+			idDrpDwn.setItems(idList);
+		else
+			errLbl.setText("No ids exist please try another option.");
 	}
 	
 	public void fetchFurtherDetails()
 	{
-		
+		//call update view to set next view
 	}
 
 }

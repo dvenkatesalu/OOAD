@@ -71,8 +71,26 @@ public class AdminModel
 		return cwids;
 	}
 	
-	/*public ArrayList<String> getCourseIDs( String dept )
+	public ArrayList<String> getCourseIDs( String dept )
 	{
+		ArrayList<String> cids = new ArrayList<>();
+		String query = "SELECT ccode from courseDetails WHERE dept = '" + dept + "';";
 		
-	}*/
+		System.out.println("GwtCID query : " + query);
+		try
+		{
+			Statement stmt = DBConnect.connection.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while( rs.next() )
+			{
+				cids.add(rs.getString(1));
+			}
+		}
+		
+		catch( Exception e )
+		{
+			System.out.println("Error while executing query : " + e );
+		}
+		return cids;
+	}
 }

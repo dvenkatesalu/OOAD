@@ -7,13 +7,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="282.0" prefWidth="539.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="282.0" prefWidth="616.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminController">
    <children>
       <ComboBox fx:id="actionDrpDwn" layoutX="45.0" layoutY="116.0" prefHeight="16.0" prefWidth="97.0" />
       <ComboBox fx:id="targetDrpDwn" layoutX="174.0" layoutY="116.0" prefHeight="12.0" prefWidth="97.0" />
       <ComboBox fx:id="functionDrpDwn" layoutX="294.0" layoutY="116.0" prefHeight="12.0" prefWidth="97.0" />
-      <Button fx:id="ftchDtls" layoutX="452.0" layoutY="116.0" mnemonicParsing="false" onAction="#fetchDetails" text="Go" />
-      <Label layoutX="151.0" layoutY="33.0" text="Student &amp; Staff Details">
+      <Label layoutX="203.0" layoutY="33.0" text="Student &amp; Staff Details">
          <font>
             <Font size="18.0" />
          </font>
@@ -21,13 +20,16 @@
       <Label layoutX="47.0" layoutY="84.0" text="Choose an action" />
       <Label layoutX="174.0" layoutY="84.0" text="Choose target" />
       <Label layoutX="288.0" layoutY="84.0" text="Choose the function" />
-      <AnchorPane fx:id="adminGoView" layoutX="32.0" layoutY="148.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="475.0">
+      <ComboBox fx:id="deptDrpDwn" layoutX="425.0" layoutY="116.0" prefWidth="150.0" />
+      <Label layoutX="426.0" layoutY="83.0" text="Department" />
+      <AnchorPane fx:id="idViewPane" layoutX="44.0" layoutY="199.0" prefHeight="69.0" prefWidth="489.0">
          <children>
-            <ComboBox fx:id="deptDrpDwn" layoutX="152.0" layoutY="21.0" onShowing="#setCwidDrpdwnValues" prefWidth="150.0" />
-            <ChoiceBox fx:id="cwidDrpDwn" layoutX="152.0" layoutY="60.0" prefWidth="150.0" />
-            <Button fx:id="enblAction" layoutX="201.0" layoutY="94.0" mnemonicParsing="false" onAction="#fetchFurtherDetails" text="Go" />
+            <ChoiceBox fx:id="idDrpDwn" layoutX="161.0" layoutY="13.0" prefWidth="150.0" />
+            <Button fx:id="finalGoBtn" layoutX="374.0" layoutY="13.0" mnemonicParsing="false" onAction="#fetchFurtherDetails" text="Go" />
+            <Label fx:id="idLbl" layoutX="79.0" layoutY="17.0" />
          </children>
       </AnchorPane>
-      <Label fx:id="errLbl" layoutX="94.0" layoutY="60.0" prefHeight="17.0" prefWidth="287.0" textFill="#f80505" />
+      <Button fx:id="fetchidBtn" layoutX="248.0" layoutY="161.0" mnemonicParsing="false" onAction="#setDeptDrpDwn" prefHeight="25.0" prefWidth="64.0" text="Go" />
+      <Label fx:id="errLbl" layoutX="115.0" layoutY="60.0" prefHeight="17.0" prefWidth="359.0" textFill="#ff0b0b" />
    </children>
 </AnchorPane>
