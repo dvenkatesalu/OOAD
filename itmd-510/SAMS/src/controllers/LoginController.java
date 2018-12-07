@@ -1,4 +1,4 @@
-package controllers;
+   package controllers;
 
 import application.Main;
 import javafx.scene.control.Label;
@@ -35,7 +35,6 @@ public class LoginController
 	
 	public void login()
 	{
-		this.errLbl.setText("");
 		String mailId = this.unameTxtFld.getText();
 		String pwd = this.pwdFld.getText();
 		
