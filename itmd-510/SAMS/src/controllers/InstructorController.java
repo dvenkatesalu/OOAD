@@ -27,6 +27,8 @@ public class InstructorController
 	private Label errLbl;
 	@FXML
 	private Button genPasscodeBtn;
+	@FXML
+	private TextField grdeTxtFld;
 	
 	private DaoModel db;
 	private Instructor i;
@@ -54,6 +56,7 @@ public class InstructorController
 		if( passCode == null || passCode == "" )
 		{
 			errLbl.setText("Passcode cannot be empty!");
+			return;
 		}
 		if( !db.generatePasscodeForAttendance(passCode, i) )
 		{
@@ -62,6 +65,32 @@ public class InstructorController
 		else
 		{
 			errLbl.setText("Passcode generated succesfully");
+		}
+	}
+	
+	public void enterGrade()
+	{
+		errLbl.setText("");
+		String grade = grdeTxtFld.getText().trim();
+		if( grade == null || grade == "" || grade.length() > 1)
+		{
+			errLbl.setText("Please enter proper grades");
+			return;
+		}
+		String cwid = Studentlist.getValue();
+		if( cwid == null || cwid == "" )
+		{
+			errLbl.setText("Please select a student id.");
+			return;
+		}
+		
+		if( !db.enterGrades(grade.charAt(0), cwid, i.ccode) )
+		{
+			errLbl.setText("Error while entering grades. Please try again");
+		}
+		else
+		{
+			errLbl.setText("Grade entered succesfully");
 		}
 	}
 

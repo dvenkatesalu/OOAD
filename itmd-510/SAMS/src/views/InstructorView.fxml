@@ -43,8 +43,8 @@
       </Label>
       <TextField fx:id="passcode" layoutX="278.0" layoutY="178.0" />
       <TextField fx:id="Attentry" layoutX="278.0" layoutY="219.0" />
-      <TextField fx:id="entergrades" layoutX="278.0" layoutY="262.0" />
-      <Button fx:id="enterGradesBtn" layoutX="482.0" layoutY="263.0" mnemonicParsing="false" text="Go" />
+      <TextField fx:id="grdeTxtFld" layoutX="278.0" layoutY="262.0" />
+      <Button fx:id="enterGradesBtn" layoutX="482.0" layoutY="263.0" mnemonicParsing="false" onAction="#enterGrade" text="Go" />
       <Button fx:id="genPasscodeBtn" layoutX="482.0" layoutY="178.0" mnemonicParsing="false" onAction="#generatePassCode" text="Go" />
       <Button layoutX="466.0" layoutY="131.0" mnemonicParsing="false" text="Generate" />
       <Label fx:id="errLbl" layoutX="283.0" layoutY="326.0" prefHeight="17.0" prefWidth="288.0" textFill="#fc0808" />

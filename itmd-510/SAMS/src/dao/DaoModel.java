@@ -170,4 +170,25 @@ public class DaoModel {
 		}
 		return false;
 	}
+	
+	public Boolean enterGrades( char grade, String cwid, String ccode )
+	{
+		String query = "UPDATE studentcoursemap SET grade = '" + grade 
+				+ "' WHERE studentid = '" + cwid + "' AND ccode = '" 
+				+ ccode + "';";
+
+		System.out.println("ENter grades query : " + query);
+		try
+		{
+			Statement stmt = DBConnect.connection.createStatement();
+			int rs = stmt.executeUpdate(query);
+			if( rs == 1 )
+				return true;
+		}
+		catch( Exception e )
+		{
+			System.out.println("Error while executing query : " + e );
+		}
+		return false;
+	}
 }
