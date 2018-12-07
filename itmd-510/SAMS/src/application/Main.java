@@ -4,6 +4,7 @@ import dao.DBConnect;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import models.Person;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 
@@ -13,6 +14,7 @@ public class Main extends Application
 	public static Stage stage;
 	private AnchorPane root;
 	private Scene scene;
+	public static Person personObject;
 	public static String LOGINVIEW = "/views/LoginView.fxml";
 	public static String REGISTERVIEW = "/views/RegisterView.fxml";
 	public static String INSTRUCTORVIEW = "/views/InstructorView.fxml";
@@ -26,6 +28,7 @@ public class Main extends Application
 		{
 			stage = primaryStage;
 			root = (AnchorPane) FXMLLoader.load(getClass().getResource(LOGINVIEW));
+			//root = (AnchorPane) FXMLLoader.load(getClass().getResource(ADMINVIEW));
 			scene = new Scene(root);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			stage.setTitle("Login");
@@ -71,6 +74,7 @@ public class Main extends Application
 	public static void main(String[] args) 
 	{
 		DBConnect db = new DBConnect();
+		personObject = new Person();
 		launch(args);
 		db.finalize();
 	}
