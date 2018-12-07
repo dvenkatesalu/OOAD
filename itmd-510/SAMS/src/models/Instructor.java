@@ -10,18 +10,19 @@ import java.util.List;
  * @author Dharanip Priya
  *
  */
-class Instructor extends Person implements Details<Instructor>
+public class Instructor extends Person implements Details<Instructor>
 {
 
-	protected String currentTerm;
+	/*protected String currentTerm;
 	protected String departmentName;
 	protected HashMap<String,String> taList;
-	protected HashMap<String,String> studentList;
+	protected HashMap<String,String> studentList;*/
+	public String ccode;
 	/**
 	 * 
 	 */
 	public Instructor() {
-		// TODO Auto-generated constructor stub
+		ccode = "";
 	}
 	
 	public String generatePasscode(Boolean type) 

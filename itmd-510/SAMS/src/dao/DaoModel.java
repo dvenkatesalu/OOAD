@@ -2,9 +2,12 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 import application.Main;
 import models.Course;
+import models.Instructor;
 
 /**
  * @author Dharanip Priya
@@ -85,7 +88,7 @@ public class DaoModel {
 				String query3 = "SELECT fname, lname, email FROM student WHERE cwid = '" + c.ta + "' AND isTA = '1'";
 				System.out.println("fetch ta details query : " + query3);
 				ResultSet rs3 = stmt.executeQuery(query3);
-				//check below code
+
 				while( rs3.next() )
 				{
 					System.out.println("Inside Query 3");
@@ -98,5 +101,73 @@ public class DaoModel {
 		{
 			System.out.println("Error while executing query : " + e );
 		}
+	}
+	
+	public ArrayList<String> getStudentListForACourse( Instructor i )
+	{
+		ArrayList<String> cwids = new ArrayList<>();
+		String ccode = "";
+		try
+		{
+			Statement stmt = DBConnect.connection.createStatement();
+			String query = "SELECT ccode FROM coursedetails WHERE instructorid = '" + Main.personObject.cwid + "';";
+			ResultSet rs = stmt.executeQuery(query);
+			while( rs.next() )
+			{
+				System.out.println("Inside CCode query : " );
+				ccode = rs.getString(1);
+			}
+		}
+		catch( Exception e )
+		{
+			System.out.println("Error while executing query : " + e );
+		}
+			
+		i.ccode = ccode;
+			
+		try
+		{
+			Statement stmt = DBConnect.connection.createStatement();
+			String query2 = "SELECT studentid FROM studentcoursemap WHERE ccode='"+ ccode + "';";;
+			System.out.println("fetch student cwid details query : " + query2);
+			ResultSet rs3 = stmt.executeQuery(query2);
+
+			while( rs3.next() )
+			{
+				System.out.println("Inside Query 2");
+				cwids.add(rs3.getString(1));
+			}
+		}
+		catch( Exception e )
+		{
+			System.out.println("Error while executing query : " + e );
+		}
+		return cwids;
+	}
+	
+	public Boolean generatePasscodeForAttendance( String pcode, Instructor i )
+	{
+		System.out.println("Inside gen passcode : ");
+		Calendar c = Calendar.getInstance();
+		String date = ((Integer)c.get(Calendar.MONTH)).toString() 
+				+ ((Integer)c.get(Calendar.DAY_OF_MONTH)).toString() 
+				+ ((Integer)c.get(Calendar.YEAR)).toString();
+		System.out.println(date);
+		String sessionCode = pcode + date;
+		String query = "INSERT INTO passcode(ccode, passcode, sessioncode) VALUES('" 
+				+ i.ccode + "','"+ pcode + "','" + sessionCode +"');";
+		System.out.println("generate passcode query : " + query);
+		try
+		{
+			Statement stmt = DBConnect.connection.createStatement();
+			int rs = stmt.executeUpdate(query);
+			if( rs == 1 )
+				return true;
+		}
+		catch( Exception e )
+		{
+			System.out.println("Error while executing query : " + e );
+		}
+		return false;
 	}
 }
