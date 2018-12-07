@@ -48,6 +48,8 @@
                         <Button fx:id="crse1Msg" layoutX="352.0" layoutY="132.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Message" />
                         <Label fx:id="crse1Grde" layoutX="25.0" layoutY="105.0" text="Grades" />
                         <Label fx:id="Grdelbl" layoutX="105.0" layoutY="105.0" prefHeight="17.0" prefWidth="95.0" />
+                        <Label layoutX="139.0" layoutY="28.0" text="Name" />
+                        <Label layoutX="324.0" layoutY="28.0" text="Email ID" />
                      </children>
                   </AnchorPane>
                </content></Tab>
@@ -84,6 +86,8 @@
                         <Button fx:id="crse2Msg" layoutX="345.0" layoutY="135.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Message" />
                         <Label fx:id="crse2Grde" layoutX="25.0" layoutY="98.0" text="Grades" />
                         <Label fx:id="Grde2Lbl" layoutX="119.0" layoutY="98.0" prefHeight="17.0" prefWidth="125.0" />
+                        <Label layoutX="133.0" layoutY="28.0" text="Name" />
+                        <Label layoutX="323.0" layoutY="28.0" text="Email ID" />
                      </children>
                   </AnchorPane>
                </content></Tab>
@@ -120,6 +124,8 @@
                         <Button fx:id="crse3Msg" layoutX="377.0" layoutY="145.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Message" />
                         <Label fx:id="crse3Grde" layoutX="28.0" layoutY="111.0" text="Grades" />
                         <Label fx:id="Grde3Lbl" layoutX="122.0" layoutY="111.0" prefHeight="17.0" prefWidth="135.0" />
+                        <Label layoutX="122.0" layoutY="34.0" text="Name" />
+                        <Label layoutX="296.0" layoutY="34.0" text="Email ID" />
                      </children>
                   </AnchorPane>
                </content></Tab>
