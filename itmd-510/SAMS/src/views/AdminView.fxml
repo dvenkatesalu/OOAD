@@ -23,10 +23,11 @@
       <Label layoutX="288.0" layoutY="84.0" text="Choose the function" />
       <AnchorPane fx:id="adminGoView" layoutX="32.0" layoutY="148.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="475.0">
          <children>
-            <ComboBox fx:id="deptDrpDwn" layoutX="152.0" layoutY="21.0" prefWidth="150.0" />
+            <ComboBox fx:id="deptDrpDwn" layoutX="152.0" layoutY="21.0" onShowing="#setCwidDrpdwnValues" prefWidth="150.0" />
             <ChoiceBox fx:id="cwidDrpDwn" layoutX="152.0" layoutY="60.0" prefWidth="150.0" />
-            <Button fx:id="enblAction" layoutX="201.0" layoutY="94.0" mnemonicParsing="false" text="Go" />
+            <Button fx:id="enblAction" layoutX="201.0" layoutY="94.0" mnemonicParsing="false" onAction="#fetchFurtherDetails" text="Go" />
          </children>
       </AnchorPane>
+      <Label fx:id="errLbl" layoutX="94.0" layoutY="60.0" prefHeight="17.0" prefWidth="287.0" textFill="#f80505" />
    </children>
 </AnchorPane>
