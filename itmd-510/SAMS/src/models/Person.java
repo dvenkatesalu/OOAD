@@ -5,6 +5,7 @@
 
 package models;
 
+import java.util.ArrayList;
 
 public class Person 
 {
@@ -17,6 +18,7 @@ public class Person
 	public Boolean isInstructor;
 	public String email;
 	public String password;
+	public ArrayList<Course> courses;
 	
 	public Person()
 	{
@@ -31,5 +33,6 @@ public class Person
 		isInstructor = false;
 		password = "";
 		email = "";
+		courses = new ArrayList<>();
 	}
 }

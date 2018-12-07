@@ -28,7 +28,7 @@ public class LoginModel
                 { 
                 	if(password.equals(rs.getString("password")) && username.equals(rs.getString("emailid"))) 
                 	{
-                		query = "SELECT admin, student, instructor FROM personalDetails WHERE email = ?;";
+                		query = "SELECT fname, mname, lname,cwid, admin, student, instructor FROM personalDetails WHERE email = ?;";
                 		stmt = DBConnect.connection.prepareStatement(query);
                 		stmt.setString(1, username);
                 		rs = stmt.executeQuery();
@@ -37,6 +37,10 @@ public class LoginModel
 		                	P.isAdmin = rs.getBoolean("admin");
 		                	P.isStudent = rs.getBoolean("student");
 		                	P.isInstructor = rs.getBoolean("instructor");
+		                	P.cwid = rs.getString("cwid");
+		                	P.fName = rs.getString("fname");
+		                	P.mName = rs.getString("mname");
+		                	P.lName = rs.getString("lname");
 		                	return true;
                         }
                 	}
