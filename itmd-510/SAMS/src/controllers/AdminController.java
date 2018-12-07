@@ -1,5 +1,6 @@
 package controllers;
 
+import application.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,6 +9,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import models.Admin;
 import models.AdminModel;
 
 /**
@@ -18,9 +20,9 @@ import models.AdminModel;
  */
 public class AdminController 
 {
-	private ObservableList<String> actionList = FXCollections.observableArrayList("View","Modify","Delete","Enter");
+	private ObservableList<String> actionList = FXCollections.observableArrayList("View","Delete","Enter");
 	private ObservableList<String> targetList = FXCollections.observableArrayList("Student", "Instructor", "Course");
-	private ObservableList<String> functionList = FXCollections.observableArrayList("Details","Schedule");
+	private ObservableList<String> functionList = FXCollections.observableArrayList("Details");
 	private ObservableList<String> deptList = FXCollections.observableArrayList("ITM", "MMAE", "ECE", "CSE");
 	private ObservableList<String> emptyList = FXCollections.observableArrayList();
 	private ObservableList<String> idList = FXCollections.observableArrayList();
@@ -49,7 +51,7 @@ public class AdminController
 	
 	
 	private AdminModel admin;
-	private String target, dept;
+	//private String target, dept;
 	/**
 	 * 
 	 */
@@ -60,6 +62,7 @@ public class AdminController
 	
 	public void initialize()
 	{		
+		Main.adminObject = new Admin();
 		actionDrpDwn.setItems(actionList);
 		targetDrpDwn.setItems(targetList);
 		functionDrpDwn.setItems(functionList);
@@ -67,41 +70,38 @@ public class AdminController
 		idDrpDwn.setItems(emptyList);
 		
 		idViewPane.setVisible(false);
-		
-		target = "";
-		dept = "";
 	}
 	
 	public void setDeptDrpDwn()
 	{	
 		errLbl.setText("");
-		String action = actionDrpDwn.getValue();
-		target = targetDrpDwn.getValue();
-		String function = functionDrpDwn.getValue();
-		dept = deptDrpDwn.getValue();
+		Main.adminObject.action = actionDrpDwn.getValue();
+		Main.adminObject.target = targetDrpDwn.getValue();
+		Main.adminObject.function = functionDrpDwn.getValue();
+		Main.adminObject.dept = deptDrpDwn.getValue();
 		
-		if( action == null || action == "" )
+		if( Main.adminObject.action == null || Main.adminObject.action == "" )
 		{
 			errLbl.setText("Please choose an action");
 			return;
 		}
-		else if( target == null || target == "" )
+		else if( Main.adminObject.target == null || Main.adminObject.target == "" )
 		{
 			errLbl.setText("Please choose a target");
 			return;
 		}
-		else if( function == null || function == "" )
+		else if( Main.adminObject.function == null || Main.adminObject.function == "" )
 		{
 			errLbl.setText("Please choose a function");
 			return;
 		}
-		else if( dept == null || dept == "" )
+		else if( Main.adminObject.dept == null || Main.adminObject.dept == "" )
 		{
 			errLbl.setText("Please choose a dept");
 			return;
 		}
 		System.out.println("In fetch details ");
-		System.out.println(dept + " : " + target );
+		System.out.println(Main.adminObject.dept + " : " + Main.adminObject.target );
 		setIdDrpdwnValues();
 	}
 	
@@ -109,19 +109,19 @@ public class AdminController
 	{
 		errLbl.setText("");
 		System.out.println("In drpDwn details ");
-		System.out.println(dept + " : " + target );
+		System.out.println(Main.adminObject.dept + " : " + Main.adminObject.target );
 		idViewPane.setVisible(true);
 				
-		if( target.equals("Course"))
+		if( Main.adminObject.target.equals("Course"))
 		{
 			idLbl.setText("Course ID");
-			idList = FXCollections.observableArrayList(admin.getCourseIDs(dept));
+			idList = FXCollections.observableArrayList(admin.getCourseIDs(Main.adminObject.dept));
 		}
 		
 		else
 		{
 			idLbl.setText("CWID");
-			idList = FXCollections.observableArrayList(admin.getCWIDs(dept, target));
+			idList = FXCollections.observableArrayList(admin.getCWIDs(Main.adminObject.dept, Main.adminObject.target));
 		}
 		
 		if( idList.size() > 0 )
@@ -132,7 +132,12 @@ public class AdminController
 	
 	public void fetchFurtherDetails()
 	{
-		//call update view to set next view
+		if( Main.adminObject.target.equals("Student"))
+			new Main().updateScene(Main.ADMINSTUDENTVIEW);
+		else if( Main.adminObject.target.equals("Instructor"))
+			new Main().updateScene(Main.ADMININSTRUCTORVIEW);
+		else if( Main.adminObject.target.equals("Course"))
+			new Main().updateScene(Main.ADMINCOURSEVIEW);
 	}
 
 }

@@ -4,6 +4,7 @@ import dao.DBConnect;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import models.Admin;
 import models.Person;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
@@ -15,11 +16,15 @@ public class Main extends Application
 	private AnchorPane root;
 	private Scene scene;
 	public static Person personObject;
+	public static Admin adminObject;
 	public static String LOGINVIEW = "/views/LoginView.fxml";
 	public static String REGISTERVIEW = "/views/RegisterView.fxml";
 	public static String INSTRUCTORVIEW = "/views/InstructorView.fxml";
 	public static String STUDENTVIEW = "/views/StudentView.fxml";
 	public static String ADMINVIEW = "/views/AdminView.fxml";
+	public static String ADMINSTUDENTVIEW = "/views/AdminStudentDetailsView.fxml";
+	public static String ADMININSTRUCTORVIEW = "/views/AdminInstructorDetailsView.fxml";
+	public static String ADMINCOURSEVIEW = "/views/AdminCourseDetailsView.fxml";
 	
 	@Override
 	public void start(Stage primaryStage) 
@@ -59,6 +64,12 @@ public class Main extends Application
 				title = "Student Window";
 			else if( viewName.equals(INSTRUCTORVIEW))
 				title = "Instructor Window";
+			else if( viewName.equals(ADMINSTUDENTVIEW))
+				title = "Student Details";
+			else if( viewName.equals(ADMININSTRUCTORVIEW))
+				title = "Instructor Details";
+			else if( viewName.equals(ADMINCOURSEVIEW))
+				title = "Course Details";
 			root = (AnchorPane) FXMLLoader.load(getClass().getResource(viewName));
 			stage.setTitle(title);
 			scene = new Scene(root);
@@ -75,6 +86,7 @@ public class Main extends Application
 	{
 		DBConnect db = new DBConnect();
 		personObject = new Person();
+		adminObject = new Admin();
 		launch(args);
 		db.finalize();
 	}
