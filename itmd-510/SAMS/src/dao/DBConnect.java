@@ -13,23 +13,25 @@ import java.sql.SQLException;
 public class DBConnect  
 {
 
-	protected Connection connection;
-	public Connection getConnection() 
+	/*public Connection getConnection() 
 	{
 		return connection;
-	}
+	}*/
 
-//	private static String url = "jdbc:mysql://www.papademas.net:3307/fp510";
-//	private static String username = "fpuser";
-//	private static String password = "510";
+	private static String url = "jdbc:mysql://localhost:3306/sams";
+	private static String username = "root";
+	private static String password = "Dipp@1106";
 	
-	private static String url = "jdbc:mysql://www.papademas.net:3307/510labs?autoReconnect=true&useSSL=false";
+	public static Connection connection;
+	
+	//private static String url = "jdbc:mysql://www.papademas.net:3307/510labs?autoReconnect=true&useSSL=false";
 
 	public DBConnect() 
 	{
 		try 
 		{
-			connection = DriverManager.getConnection(url, "db510", "510");
+			connection = DriverManager.getConnection(url, username, password);
+			System.out.println("Opening connection");
 		} 
 		
 		catch (SQLException e) 
@@ -44,7 +46,10 @@ public class DBConnect
 		try 
 		{
 			if( !connection.isClosed() )
+			{
+				System.out.println("Closing connection");
 				connection.close();
+			}
 		} 
 		
 		catch (SQLException e) 
