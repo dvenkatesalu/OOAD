@@ -52,7 +52,10 @@
                         <Button fx:id="crse1MrkAttdnce" layoutX="25.0" layoutY="132.0" mnemonicParsing="false" text="Mark Attendance" />
                         <Button fx:id="crse1AttdRep" layoutX="180.0" layoutY="132.0" mnemonicParsing="false" text="Attendance Report" />
                         <Button fx:id="crse1Msg" layoutX="352.0" layoutY="132.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Message" />
-                        <Label fx:id="crse1Grde" layoutX="25.0" layoutY="105.0" text="Grades" />
+                        <Label fx:id="crse1Grde" layoutX="25.0" layoutY="105.0" text="Grades">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Label>
                         <Label fx:id="Grdelbl" layoutX="105.0" layoutY="105.0" prefHeight="17.0" prefWidth="95.0" />
                      </children>
                   </AnchorPane>
