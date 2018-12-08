@@ -25,7 +25,7 @@ import models.AdminModel;
 public class AdminController 
 {
 	private ObservableList<String> actionList = FXCollections.observableArrayList("View","Enter");
-	private ObservableList<String> targetList = FXCollections.observableArrayList("Student", "Instructor", "Course");
+	private ObservableList<String> targetList = FXCollections.observableArrayList("Course", "Student", "Instructor");
 	private ObservableList<String> functionList = FXCollections.observableArrayList("Details");
 	private ObservableList<String> deptList = FXCollections.observableArrayList("ITM", "MMAE", "ECE", "CSE");
 	private ObservableList<String> emptyList = FXCollections.observableArrayList();
@@ -155,12 +155,12 @@ public class AdminController
 		
 		if( Main.adminObject.target.equals("Student"))
 		{
-			Main.adminObject.cwid = idDrpDwn.getValue();
+			//Main.adminObject.cwid = idDrpDwn.getValue();
 			new Main().updateScene(Main.ADMINSTUDENTVIEW);
 		}
 		else if( Main.adminObject.target.equals("Instructor"))
 		{
-			Main.adminObject.cwid = idDrpDwn.getValue();
+			//Main.adminObject.cwid = idDrpDwn.getValue();
 			new Main().updateScene(Main.ADMININSTRUCTORVIEW);
 		}
 		else if( Main.adminObject.target.equals("Course"))

@@ -19,6 +19,9 @@ public class Person
 	public String email;
 	public String password;
 	public ArrayList<Course> courses;
+	public String currTerm;
+	public String level;
+	public Boolean isTa;
 	
 	public Person()
 	{
@@ -34,5 +37,8 @@ public class Person
 		password = "";
 		email = "";
 		courses = new ArrayList<>();
+		currTerm = "";
+		level = "";
+		isTa = false;
 	}
 }

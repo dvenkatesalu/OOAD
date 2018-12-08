@@ -1,6 +1,5 @@
 package dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -11,6 +10,7 @@ import application.Main;
 import models.Course;
 import models.Instructor;
 import models.NewCourseDetails;
+import models.Person;
 
 /**
  * @author Dharanip Priya
@@ -89,7 +89,8 @@ public class DaoModel {
 			Statement stmt = DBConnect.connection.createStatement();
 			if( c.ta != "" )
 			{
-				String query3 = "SELECT fname, lname, email FROM sams_student WHERE cwid = '" + c.ta + "' AND isTA = '1'";
+				//String query3 = "SELECT fname, lname, email FROM sams_student WHERE cwid = '" + c.ta + "' AND isTA = '1'";
+				String query3 = "SELECT fname, lname, email FROM student WHERE cwid = '" + c.ta + "' AND isTA = '1'";
 				System.out.println("fetch ta details query : " + query3);
 				ResultSet rs3 = stmt.executeQuery(query3);
 
@@ -263,6 +264,133 @@ public class DaoModel {
 			System.out.println("Error while executing query : " + e );
 		}
 		return false;
+	}
+	
+	public boolean enterStudentDetailsByAdmin( Person p )
+	{
+		/*String query = "INSERT INTO sams_student( fname, lname, cwid, email, isTA, level, currTerm) VALUES('" 
+				+ p.fName + "','" + p.lName + "','" + p.cwid + "','" + p.email + "'," + p.isTa + ",'" + p.level + 
+				"','" + p.currTerm + "');";*/
+		
+		String query = "INSERT INTO student( fname, lname, cwid, email, isTA, level, currTerm) VALUES('" 
+				+ p.fName + "','" + p.lName + "','" + p.cwid + "','" + p.email + "'," + p.isTa + ",'" + p.level + 
+				"','" + p.currTerm + "');";
+		System.out.println("ENter student details query : " + query);
+		try
+		{
+			Statement stmt = DBConnect.connection.createStatement();
+			int rs = stmt.executeUpdate(query);
+			if( rs != 1 )
+				return false;
+		}
+		catch( Exception e )
+		{
+			System.out.println("Error while executing query : " + e );
+			return false;
+		}
+		
+		System.out.println("Courses size : " + p.courses.size());
+		
+		for( int i = 0; i < p.courses.size(); i++ )
+		{
+			query = "INSERT INTO studentcoursemap(ccode, studentid) VALUES('" + p.courses.get(i).ccode + "','" +
+					p.cwid + "');" ;
+			System.out.println("ENter studentcourse details query : " + query);
+			try
+			{
+				Statement stmt = DBConnect.connection.createStatement();
+				int rs = stmt.executeUpdate(query);
+				if( rs != 1 )
+					return false;
+			}
+			catch( Exception e )
+			{
+				System.out.println("Error while executing query : " + e );
+				return false;
+			}
+			if( p.isTa )
+			{
+					enterTADetails(p.courses.get(i).ccode, p.cwid);
+			}
+		}
+		return true;
+		
+	}
+	
+	public void enterTADetails( String ccode, String cwid )
+	{
+		String query = "INSERT INTO coursedetails( TAid ) VALUES('" + cwid + "') WHERE ccode = '" + ccode + "';";
+		System.out.println("ENter ta details query : " + query);
+		try
+		{
+			Statement stmt = DBConnect.connection.createStatement();
+			int rs = stmt.executeUpdate(query);
+			if( rs == 1 )
+				return;
+		}
+		catch( Exception e )
+		{
+			System.out.println("Error while executing query : " + e );
+			return;
+		}
+	}
+	
+	public Boolean enterInstructorDetailsByAdmin( Instructor i )
+	{
+		String query = "INSERT INTO instructor( cwid, courseid, email, fname, lname ) VALUES('" + i.cwid
+				+ "','" + i.ccode + "','" + i.email + "','" + i.fname + "','" + i.lname +"');";
+		System.out.println("Enter Instructor Details : " + query);
+		try
+		{
+			Statement stmt = DBConnect.connection.createStatement();
+			int rs = stmt.executeUpdate(query);
+			if( rs != 1 )
+				return false;
+		}
+		catch( Exception e )
+		{
+			System.out.println("Error while executing query : " + e );
+			return false;
+		}
+		
+		query = "UPDATE coursedetails SET instructorid ='" + i.cwid +"' WHERE ccode = '" + i.ccode + "';";
+		System.out.println("Enter Instructor Details : " + query);
+		try
+		{
+			Statement stmt = DBConnect.connection.createStatement();
+			int rs = stmt.executeUpdate(query);
+			if( rs != 1 )
+				return false;
+		}
+		catch( Exception e )
+		{
+			System.out.println("Error while executing query : " + e );
+			return false;
+		}
+		return true;
+	}
+	
+	public ArrayList<String> getCourseListPerDept( String dept )
+	{
+		String query = "SELECT ccode FROM coursedetails WHERE dept = '" + dept + "';";
+		ArrayList<String> ccodes = new ArrayList<>();
+		try
+		{
+			Statement stmt = DBConnect.connection.createStatement();
+			System.out.println("fetch coursecode query : " + query);
+			ResultSet rs3 = stmt.executeQuery(query);
+
+			while( rs3.next() )
+			{
+				System.out.println("Inside Query ");
+				ccodes.add(rs3.getString(1));
+			}
+		}
+		catch( Exception e )
+		{
+			System.out.println("Error while executing query : " + e );
+		}
+		return ccodes;
 	}
 	
 	public NewCourseDetails getCourseDetails( String ccode )
