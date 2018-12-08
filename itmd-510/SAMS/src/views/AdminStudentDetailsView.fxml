@@ -15,7 +15,7 @@
 
 <AnchorPane fx:id="adminStdntViewPane" prefHeight="375.0" prefWidth="405.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="titleLbl" layoutX="128.0" layoutY="14.0" prefHeight="17.0" prefWidth="150.0" text="Title" textAlignment="CENTER" wrapText="true">
+      <Label fx:id="titleLbl" layoutX="128.0" layoutY="14.0" prefHeight="17.0" prefWidth="150.0" text="Student Details" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
@@ -124,8 +124,7 @@
             </HBox>
          </children>
       </GridPane>
-      <Button fx:id="okBtn" layoutX="120.0" layoutY="318.0" mnemonicParsing="false" text="Ok" />
-      <Button fx:id="enterBtn" layoutX="203.0" layoutY="318.0" mnemonicParsing="false" text="Enter" />
-      <Button fx:id="mdfyBtn" layoutX="294.0" layoutY="318.0" mnemonicParsing="false" text="Modify" />
+      <Button fx:id="okBtn" layoutX="154.0" layoutY="318.0" mnemonicParsing="false" text="Ok" />
+      <Button fx:id="enterBtn" layoutX="278.0" layoutY="318.0" mnemonicParsing="false" text="Enter" />
    </children>
 </AnchorPane>

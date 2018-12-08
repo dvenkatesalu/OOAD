@@ -1,12 +1,17 @@
 package controllers;
 
+import java.util.Optional;
+
 import application.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import models.Admin;
@@ -48,7 +53,8 @@ public class AdminController
 	private ChoiceBox<String> idDrpDwn;
 	@FXML 
 	private Button finalGoBtn;
-	
+	@FXML
+	private DialogPane delPane;	
 	
 	private AdminModel admin;
 	//private String target, dept;
@@ -70,12 +76,14 @@ public class AdminController
 		idDrpDwn.setItems(emptyList);
 		
 		idViewPane.setVisible(false);
+		delPane.setVisible(false);
 	}
 	
 	public void setDeptDrpDwn()
 	{	
 		errLbl.setText("");
-		Main.adminObject.action = actionDrpDwn.getValue();
+		Main.adminObject.action = this.actionDrpDwn.getValue();
+		System.out.println("Action value : " + this.actionDrpDwn.getValue());
 		Main.adminObject.target = targetDrpDwn.getValue();
 		Main.adminObject.function = functionDrpDwn.getValue();
 		Main.adminObject.dept = deptDrpDwn.getValue();
@@ -100,8 +108,13 @@ public class AdminController
 			errLbl.setText("Please choose a dept");
 			return;
 		}
-		System.out.println("In fetch details ");
 		System.out.println(Main.adminObject.dept + " : " + Main.adminObject.target );
+		System.out.println("Main object action : " + Main.adminObject.action);
+		if( Main.adminObject.action.equals("Enter") )
+		{
+			fetchFurtherDetails();
+			return;
+		}
 		setIdDrpdwnValues();
 	}
 	
@@ -109,7 +122,7 @@ public class AdminController
 	{
 		errLbl.setText("");
 		System.out.println("In drpDwn details ");
-		System.out.println(Main.adminObject.dept + " : " + Main.adminObject.target );
+		System.out.println(Main.adminObject.dept + " : " + Main.adminObject.target + actionDrpDwn.getValue());
 		idViewPane.setVisible(true);
 				
 		if( Main.adminObject.target.equals("Course"))
@@ -132,12 +145,26 @@ public class AdminController
 	
 	public void fetchFurtherDetails()
 	{
+		if( Main.adminObject.action.equals("Delete") )
+		{
+			delPane.setVisible(true);
+		}
+		
 		if( Main.adminObject.target.equals("Student"))
+		{
+			Main.adminObject.cwid = idDrpDwn.getValue();
 			new Main().updateScene(Main.ADMINSTUDENTVIEW);
+		}
 		else if( Main.adminObject.target.equals("Instructor"))
+		{
+			Main.adminObject.cwid = idDrpDwn.getValue();
 			new Main().updateScene(Main.ADMININSTRUCTORVIEW);
+		}
 		else if( Main.adminObject.target.equals("Course"))
+		{
+			Main.adminObject.ccode = idDrpDwn.getValue();
 			new Main().updateScene(Main.ADMINCOURSEVIEW);
+		}
 	}
 
 }

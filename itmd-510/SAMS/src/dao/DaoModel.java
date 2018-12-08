@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.Calendar;
 import application.Main;
 import models.Course;
 import models.Instructor;
+import models.NewCourseDetails;
 
 /**
  * @author Dharanip Priya
@@ -190,5 +192,62 @@ public class DaoModel {
 			System.out.println("Error while executing query : " + e );
 		}
 		return false;
+	}
+	
+	public Boolean enterCourseDetails( NewCourseDetails c )
+	{
+		String query = "INSERT INTO coursedetails(ccode, cname, dept, schedule) VALUES (?,?,?,?);";
+		
+		try
+		{
+			PreparedStatement insertRecords = null;
+			insertRecords = DBConnect.connection.prepareStatement(query);
+			insertRecords.setString(1, c.ccode);
+			insertRecords.setString(2, c.cName);
+			insertRecords.setString(3, c.dept);
+			insertRecords.setString(4, c.schedule);
+			System.out.println("Insert course Details query : " + insertRecords.toString());
+			int count = insertRecords.executeUpdate();
+		       
+			 if( count == 1 )
+			 {
+				 System.out.println("Record Inserted successfully!");
+			     return true;
+			 }
+			 
+			 return false;
+		}
+		catch( Exception e )
+		{
+			System.out.println("Error while executing query : " + e );
+		}
+		return false;
+	}
+	
+	public NewCourseDetails getCourseDetails( String ccode )
+	{
+		NewCourseDetails c = new NewCourseDetails();
+		try
+		{
+			Statement stmt = DBConnect.connection.createStatement();
+
+			String query = "SELECT ccode, cname, dept, schedule FROM coursedetails WHERE ccode = '" + ccode + "';";
+			System.out.println("fetch course details query : " + query);
+			ResultSet rs = stmt.executeQuery(query);
+
+			if( rs.next() )
+			{
+				c.ccode = rs.getString(1);
+				c.cName = rs.getString(2);
+				c.dept = rs.getString(3);
+				c.schedule = rs.getString(4);
+			}
+
+		}
+		catch( Exception e )
+		{
+			System.out.println("Error while executing query : " + e );
+		}
+		return c;
 	}
 }
