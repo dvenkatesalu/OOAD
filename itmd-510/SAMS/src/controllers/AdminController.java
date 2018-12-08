@@ -25,7 +25,7 @@ import models.AdminModel;
  */
 public class AdminController 
 {
-	private ObservableList<String> actionList = FXCollections.observableArrayList("View","Delete","Enter");
+	private ObservableList<String> actionList = FXCollections.observableArrayList("View","Enter");
 	private ObservableList<String> targetList = FXCollections.observableArrayList("Student", "Instructor", "Course");
 	private ObservableList<String> functionList = FXCollections.observableArrayList("Details");
 	private ObservableList<String> deptList = FXCollections.observableArrayList("ITM", "MMAE", "ECE", "CSE");
@@ -54,7 +54,11 @@ public class AdminController
 	@FXML 
 	private Button finalGoBtn;
 	@FXML
-	private DialogPane delPane;	
+	private AnchorPane delPane;	
+	@FXML 
+	private Button yesBtn;
+	@FXML 
+	private Button noBtn;
 	
 	private AdminModel admin;
 	//private String target, dept;
@@ -145,10 +149,10 @@ public class AdminController
 	
 	public void fetchFurtherDetails()
 	{
-		if( Main.adminObject.action.equals("Delete") )
+		/*if( Main.adminObject.action.equals("Delete") )
 		{
 			delPane.setVisible(true);
-		}
+		}*/
 		
 		if( Main.adminObject.target.equals("Student"))
 		{
@@ -166,5 +170,11 @@ public class AdminController
 			new Main().updateScene(Main.ADMINCOURSEVIEW);
 		}
 	}
+	
+	/*public void delAction()
+	{
+		
+	}
 
+	public */
 }
