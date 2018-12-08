@@ -49,9 +49,7 @@
                               <Label fx:id="crse1TAMailId" prefHeight="17.0" prefWidth="135.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
-                        <Button fx:id="crse1MrkAttdnce" layoutX="25.0" layoutY="132.0" mnemonicParsing="false" text="Mark Attendance" />
-                        <Button fx:id="crse1AttdRep" layoutX="180.0" layoutY="132.0" mnemonicParsing="false" text="Attendance Report" />
-                        <Button fx:id="crse1Msg" layoutX="352.0" layoutY="132.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Message" />
+                        <Button fx:id="crse1MrkAttdnce" layoutX="171.0" layoutY="132.0" mnemonicParsing="false" onAction="#markAttendance" text="Mark Attendance" />
                         <Label fx:id="crse1Grde" layoutX="25.0" layoutY="105.0" text="Grades">
                            <font>
                               <Font name="System Bold" size="12.0" />
@@ -90,9 +88,7 @@
                               <Label fx:id="crse2TAMailId" prefHeight="17.0" prefWidth="241.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
-                        <Button fx:id="crse2MrkAttdnce" layoutX="25.0" layoutY="135.0" mnemonicParsing="false" text="Mark Attendance" />
-                        <Button fx:id="crse2AttdRep" layoutX="175.0" layoutY="135.0" mnemonicParsing="false" text="Attendance Report" />
-                        <Button fx:id="crse2Msg" layoutX="345.0" layoutY="135.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Message" />
+                        <Button fx:id="crse2MrkAttdnce" layoutX="173.0" layoutY="132.0" mnemonicParsing="false" onAction="#markAttendance" text="Mark Attendance" />
                         <Label fx:id="crse2Grde" layoutX="25.0" layoutY="98.0" text="Grades" />
                         <Label fx:id="Grde2Lbl" layoutX="119.0" layoutY="98.0" prefHeight="17.0" prefWidth="125.0" />
                         <Label layoutX="133.0" layoutY="28.0" text="Name" />
@@ -128,9 +124,7 @@
                               <Label fx:id="crse3TAMailId" prefHeight="17.0" prefWidth="241.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                            </children>
                         </GridPane>
-                        <Button fx:id="crse3MrkAttdnce" layoutX="28.0" layoutY="145.0" mnemonicParsing="false" text="Mark Attendance" />
-                        <Button fx:id="crse3AttdRep" layoutX="194.0" layoutY="145.0" mnemonicParsing="false" text="Attendance Report" />
-                        <Button fx:id="crse3Msg" layoutX="377.0" layoutY="145.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" text="Message" />
+                        <Button fx:id="crse3MrkAttdnce" layoutX="190.0" layoutY="132.0" mnemonicParsing="false" onAction="#markAttendance" text="Mark Attendance" />
                         <Label fx:id="crse3Grde" layoutX="28.0" layoutY="111.0" text="Grades" />
                         <Label fx:id="Grde3Lbl" layoutX="122.0" layoutY="111.0" prefHeight="17.0" prefWidth="135.0" />
                         <Label layoutX="122.0" layoutY="34.0" text="Name" />
@@ -150,10 +144,5 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="158.0" layoutY="318.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="158.0" text="Check Messages">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
    </children>
 </AnchorPane>

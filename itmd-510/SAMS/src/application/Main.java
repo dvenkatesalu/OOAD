@@ -25,6 +25,7 @@ public class Main extends Application
 	public static String ADMINSTUDENTVIEW = "/views/AdminStudentDetailsView.fxml";
 	public static String ADMININSTRUCTORVIEW = "/views/AdminInstructorDetailsView.fxml";
 	public static String ADMINCOURSEVIEW = "/views/AdminCourseDetailsView.fxml";
+	public static String MARKATTENDANCE = "/views/MarkAttendanceView.fxml";
 	
 	@Override
 	public void start(Stage primaryStage) 
@@ -70,6 +71,8 @@ public class Main extends Application
 				title = "Instructor Details";
 			else if( viewName.equals(ADMINCOURSEVIEW))
 				title = "Course Details";
+			else if( viewName.equals(MARKATTENDANCE))
+				title = "Mark Attendance";
 			root = (AnchorPane) FXMLLoader.load(getClass().getResource(viewName));
 			stage.setTitle(title);
 			scene = new Scene(root);

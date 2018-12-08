@@ -5,11 +5,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="117.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="225.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MarkAttendanceController">
    <children>
-      <Button fx:id="passBtn" layoutX="296.0" layoutY="46.0" mnemonicParsing="false" onAction="#enpasscode" text="OK" />
+      <Button fx:id="okBtn" layoutX="174.0" layoutY="181.0" mnemonicParsing="false" onAction="#enterStudentPasscode" text="OK" />
       <Label fx:id="passcodeLbl" layoutX="28.0" layoutY="50.0" text="Enter Passcode" />
-      <TextField fx:id="stupasscode" layoutX="123.0" layoutY="46.0" />
+      <TextField fx:id="pcTxtFld" layoutX="123.0" layoutY="46.0" />
+      <Label fx:id="errLbl" layoutX="123.0" layoutY="157.0" prefHeight="17.0" prefWidth="251.0" />
+      <Label layoutX="28.0" layoutY="88.0" text="Course Code" />
+      <TextField fx:id="ccodeTxtFld" layoutX="123.0" layoutY="84.0" />
+      <Label layoutX="28.0" layoutY="122.0" prefHeight="17.0" prefWidth="54.0" text="CWID" />
+      <TextField fx:id="cwidTxtFld" layoutX="123.0" layoutY="118.0" />
    </children>
 </AnchorPane>

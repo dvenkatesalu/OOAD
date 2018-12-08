@@ -7,21 +7,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InstructorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="333.0" prefWidth="596.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InstructorController">
    <children>
-      <ChoiceBox fx:id="Studentlist" layoutX="277.0" layoutY="88.0" prefWidth="150.0" />
-      <ChoiceBox fx:id="Attreport" layoutX="277.0" layoutY="131.0" prefWidth="150.0" />
-      <Label layoutX="231.0" layoutY="28.0" text="Student Details">
+      <ChoiceBox fx:id="Studentlist" layoutX="277.0" layoutY="136.0" prefWidth="150.0" />
+      <Label layoutX="226.0" layoutY="67.0" text="Student Details">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="119.0" layoutY="90.0" text="Student List">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="119.0" layoutY="134.0" text="Attendance Report">
+      <Label layoutX="122.0" layoutY="138.0" text="Student List">
          <font>
             <Font size="14.0" />
          </font>
@@ -31,22 +25,15 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="119.0" layoutY="221.0" text="Attendance Entry">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Label>
-      <Label layoutX="119.0" layoutY="265.0" text="Enter Grades">
+      <Label layoutX="122.0" layoutY="225.0" text="Enter Grades">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
       <TextField fx:id="passcode" layoutX="278.0" layoutY="178.0" />
-      <TextField fx:id="Attentry" layoutX="278.0" layoutY="219.0" />
-      <TextField fx:id="grdeTxtFld" layoutX="278.0" layoutY="262.0" />
-      <Button fx:id="enterGradesBtn" layoutX="482.0" layoutY="263.0" mnemonicParsing="false" onAction="#enterGrade" text="Go" />
+      <TextField fx:id="grdeTxtFld" layoutX="278.0" layoutY="223.0" />
+      <Button fx:id="enterGradesBtn" layoutX="482.0" layoutY="223.0" mnemonicParsing="false" onAction="#enterGrade" text="Go" />
       <Button fx:id="genPasscodeBtn" layoutX="482.0" layoutY="178.0" mnemonicParsing="false" onAction="#generatePassCode" text="Go" />
-      <Button layoutX="466.0" layoutY="131.0" mnemonicParsing="false" text="Generate" />
       <Label fx:id="errLbl" layoutX="283.0" layoutY="326.0" prefHeight="17.0" prefWidth="288.0" textFill="#fc0808" />
    </children>
 </AnchorPane>

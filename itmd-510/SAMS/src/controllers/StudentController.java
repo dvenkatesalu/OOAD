@@ -1,6 +1,7 @@
 package controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import application.Main;
@@ -30,6 +31,13 @@ public class StudentController
 	private Label crse1TAMailId;
 	@FXML
 	private Label crse1Nme;
+	@FXML
+	private Label Grdelbl;
+	@FXML
+	private Button crse1MrkAttdnce, crse2MrkAttdnce, crse3MrkAttdnce;
+	
+	@FXML
+	private Button crse3AttdRep, crse2AttdRep, crse1AttdRep;
 	
 	//tab 2
 	@FXML
@@ -44,6 +52,8 @@ public class StudentController
 	private Label crse2TAMailId;
 	@FXML
 	private Label crse2Nme;
+	@FXML
+	private Label Grde2Lbl;
 	
 	//tab 3
 	@FXML
@@ -58,6 +68,8 @@ public class StudentController
 	private Label crse3TAMailId;
 	@FXML
 	private Label crse2Nme1;
+	@FXML
+	private Label Grde3Lbl;
 	
 	private DaoModel db;
 
@@ -81,6 +93,7 @@ public class StudentController
 		crse1ProfMailId.setText(Main.personObject.courses.get(0).iemail);
 		crse1TAName.setText(Main.personObject.courses.get(0).taName);
 		crse1TAMailId.setText(Main.personObject.courses.get(0).temail);
+		Grdelbl.setText(Main.personObject.courses.get(0).grade);
 		
 		//Tab2
 		System.out.println("IName2 in Controller : " + Main.personObject.courses.get(1).instructorName);
@@ -90,6 +103,7 @@ public class StudentController
 		crse2ProfMailId.setText(Main.personObject.courses.get(1).iemail);
 		crse2TAName.setText(Main.personObject.courses.get(1).taName);
 		crse2TAMailId.setText(Main.personObject.courses.get(1).temail);
+		Grde2Lbl.setText(Main.personObject.courses.get(1).grade);
 		
 		//Tab3
 		crs3Tab.setText(Main.personObject.courses.get(2).ccode);
@@ -98,6 +112,12 @@ public class StudentController
 		crse3ProfMailId.setText(Main.personObject.courses.get(2).iemail);
 		crse3TAName.setText(Main.personObject.courses.get(2).taName);
 		crse3TAMailId.setText(Main.personObject.courses.get(2).temail);
+		Grde3Lbl.setText(Main.personObject.courses.get(2).grade);
 		
+	}
+	
+	public void markAttendance()
+	{
+		new Main().updateScene(Main.MARKATTENDANCE);
 	}
 }

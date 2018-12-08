@@ -65,7 +65,6 @@ public class AdminCourseDetailsController
 	
 	private void disableFields()
 	{
-		//Get Details from DB
 		ccodeTextFld.setEditable(false);
 		cNametxtFLd.setEditable(false);
 		deptLbl.setVisible(true);

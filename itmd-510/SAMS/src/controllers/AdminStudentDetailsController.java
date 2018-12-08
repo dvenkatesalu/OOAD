@@ -76,7 +76,7 @@ public class AdminStudentDetailsController {
 	
 	public void viewDetails()
 	{
-		Person P;
+		//Person P;
 		
 	}
 	

@@ -18,18 +18,11 @@ public class DBConnect
 		return connection;
 	}*/
 
-	/*
-	private static String url = "jdbc:mysql://localhost:3306/sams";
-	private static String username = "root";
-	private static String password = "Dipp@1106";
-	*/
-	private static String url = "jdbc:mysql://192.168.1.119:3306/sams";
-	private static String username = "harika";
-	private static String password = "harika123";
+	private static String url = "jdbc:mysql://www.papademas.net:3307/fp510?autoReconnect=true&useSSL=false";
+	private static String username = "fpuser";
+	private static String password = "510";
 	
 	public static Connection connection;
-	
-	//private static String url = "jdbc:mysql://www.papademas.net:3307/510labs?autoReconnect=true&useSSL=false";
 
 	public DBConnect() 
 	{

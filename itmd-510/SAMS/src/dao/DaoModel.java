@@ -1,5 +1,6 @@
 package dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -27,8 +28,8 @@ public class DaoModel {
 	
 	public void fetchStudentDetails()
 	{	
-		String query1 = "select courseDetails.cName, courseDetails.instructorid, courseDetails.taid, studentCourseMap.ccode "
-				+ "from courseDetails, studentCourseMap WHERE studentCourseMap.studentid = '"
+		String query1 = "select courseDetails.cName, courseDetails.instructorid, courseDetails.taid, studentCourseMap.ccode, "
+				+ " studentCourseMap.grade from courseDetails, studentCourseMap WHERE studentCourseMap.studentid = '"
 				+ Main.personObject.cwid + "' AND courseDetails.ccode = studentCourseMap.ccode;";
 		
 		System.out.println("fetch course details query : " + query1);
@@ -45,6 +46,7 @@ public class DaoModel {
 				c.instructor = rs.getString(2);
 				c.ta = rs.getString(3);
 				c.ccode = rs.getString(4);
+				c.grade = rs.getString(5);
 				getInstructorDetails(c);
 				getTADetails(c);
 				System.out.println("Instructor Name in query 1: " + c.instructorName );
@@ -87,7 +89,7 @@ public class DaoModel {
 			Statement stmt = DBConnect.connection.createStatement();
 			if( c.ta != "" )
 			{
-				String query3 = "SELECT fname, lname, email FROM student WHERE cwid = '" + c.ta + "' AND isTA = '1'";
+				String query3 = "SELECT fname, lname, email FROM sams_student WHERE cwid = '" + c.ta + "' AND isTA = '1'";
 				System.out.println("fetch ta details query : " + query3);
 				ResultSet rs3 = stmt.executeQuery(query3);
 
@@ -171,6 +173,45 @@ public class DaoModel {
 			System.out.println("Error while executing query : " + e );
 		}
 		return false;
+	}
+	
+	public String enterStudentAttendance( String pcode,  String ccode, String cwid )
+	{
+		System.out.println("Inside enter passcode : ");
+		Calendar c = Calendar.getInstance();
+		String date = ((Integer)c.get(Calendar.MONTH)).toString() 
+				+ ((Integer)c.get(Calendar.DAY_OF_MONTH)).toString() 
+				+ ((Integer)c.get(Calendar.YEAR)).toString();
+		String sessionCode = pcode + date;
+		
+		String query1 = "SELECT passcode FROM passcode WHERE sessioncode = '" + sessionCode + "' AND ccode = '" + ccode + "';";
+		try
+		{
+			Statement stmt = DBConnect.connection.createStatement();
+			ResultSet rs = stmt.executeQuery(query1);
+			if( !rs.next() )
+				return ("Invalid Passcode!");
+		}
+		catch( Exception e )
+		{
+			System.out.println("Error while executing query : " + e );
+		}
+		
+		String query = "INSERT INTO attendance(cwid, passcode, sessioncode, ccode, present) VALUES('" 
+				+ cwid + "','"+ pcode + "','" + sessionCode +"','" + ccode + "','1');";
+		System.out.println("Enter passcode query : " + query);
+		try
+		{
+			Statement stmt = DBConnect.connection.createStatement();
+			int rs = stmt.executeUpdate(query);
+			if( rs == 1 )
+				return "Attendace Marked!";
+		}
+		catch( Exception e )
+		{
+			System.out.println("Error while executing query : " + e );
+		}
+		return "Attendance entry failed. Please try again!";
 	}
 	
 	public Boolean enterGrades( char grade, String cwid, String ccode )
